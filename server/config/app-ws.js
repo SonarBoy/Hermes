@@ -7,8 +7,12 @@ const { Server } = require('socket.io');
 // let io = new Server(this);
 
 let app = express();
+
+var expressWs = require('express-ws')(app);
+
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(express.static(path.join(__dirname, '../../node_modules')));
 let tableList = [];
 // tableList[0]={};
 // tableList.splice(0);
@@ -19,8 +23,17 @@ let tableList = [];
 
 // });
 
+
+
+app.on('message', function(msg) {
+    console.log("Testing with Express-WS");
+    console.log(msg);
+  });
+
+
 app.get("/SocketIOChat", (req, res) => {
-    res.sendFile(path.join(__dirname, '../../client/socketIOIndex.html'));
+    res.setHeader('X-Content-Type-Options','nosniff');
+    res.sendFile(path.join(__dirname, '../../client/socketIOIndexWS.html'));
 });
 
 

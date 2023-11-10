@@ -1,7 +1,6 @@
-var app = require('../server/config/app');
+//var app = require('../server/config/app');
+var app = require('../server/config/app-ws');
 var http = require('http');
-
-const { Server } = require('socket.io');
 
 
 var port = normalizePort(process.env.PORT || '3000');
@@ -13,52 +12,6 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-
-/* 
-  Tutorial #3 Setup and what to do on specific events.
-
-  Tutorial #5 adding connectionStateRecovery to rebroadcast missed events
-  note socket.io does not store events but this can save some of them.
-
-  Why its not used all the time 
-  it doesn't always work, for example if the server abruptly crashes or gets restarted, then the client state might not be saved
-  it is not always possible to enable this feature when scaling up
-
-*/
-let io = new Server(server, {
-  connectionStateRecovery: {}
-});
-
-
-io.on('connection',(socket) => {
-  console.log('A user connected ' + socket.id);
-
-  /* 
-    Tutorial #5 Broadcasting to conected sockets.
-  */
-  socket.broadcast.emit('connection','Hello '+ socket.id);
-
-  socket.on('disconnect',() =>{
-    console.log('A user disconnected '+ socket.id);
-
-    // Tutrl #5
-    socket.broadcast.emit('Good Bye ' + socket.id);
-  });
-
-  /* 
-    Tutorial #4 Listening of sent events from the client.
-  */
-
-    socket.on('chat message', (msg) => {
-        console.log('Message: ' + msg);
-
-        // Tutrl #5
-        io.emit('chat message', socket.id + " said: " +msg);
-    });
-
-
-});
 
 
 /**
