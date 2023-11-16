@@ -10,6 +10,8 @@ let app = express();
 
 var expressWs = require('express-ws')(app);
 
+
+
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(express.static(path.join(__dirname, '../../node_modules')));
@@ -25,15 +27,10 @@ let tableList = [];
 
 
 
-app.on('message', function(msg) {
-    console.log("Testing with Express-WS");
-    console.log(msg);
-  });
-
-
 app.get("/SocketIOChat", (req, res) => {
     res.setHeader('X-Content-Type-Options','nosniff');
-    res.sendFile(path.join(__dirname, '../../client/socketIOIndexWS.html'));
+    //res.sendFile(path.join(__dirname, '../../client/socketIOIndexWS.html'));
+    res.sendFile(path.join(__dirname, '../../client/testerHTML.html'));
 });
 
 
@@ -144,3 +141,5 @@ app.get("/TableRequest-Get-Request", (request, response) => {
 
 
 module.exports = app;
+
+module.exports = (io) => { }

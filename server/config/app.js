@@ -12,7 +12,52 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 let tableList = [];
 // tableList[0]={};
 // tableList.splice(0);
+app.use(express.static(path.join(__dirname, '../../client')));
+app.use(express.static(path.join(__dirname, '../../client/css')));
 
+
+let printQueue = function(){
+
+    for(let indx = 0;indx < tableList.length;indx++){
+        if(tableList[indx] != undefined){
+            //outputTableList += "<p>" + tableList[indx].TableName+"</p>";
+
+            console.log(tableList[indx].TableName + " " + tableList[indx].Req);
+
+        }else{
+            //outputTableList += "<p>" + "undefined"+"</p>";
+        }
+        
+    }
+
+    return;
+}
+
+
+
+let queueInsertingFunction = function(insertingData){
+
+    console.log("Queue Inserting: " + insertingData.TableName);
+    //console.log(tableList.findIndex((element) => { return element.TableName == tableReq}));
+
+    let tableReq = insertingData.TableName;
+
+    let indx = tableList.findIndex((element) => { return element.TableName == tableReq});
+    
+    if(indx != -1 ){
+        if(!tableList[indx].Req.includes(insertingData.Req)){
+            tableList[indx].Req += "|" + insertingData.Req;
+        }
+    }else{
+        tableList.push(insertingData);
+    }
+
+    
+
+
+
+    //console.log("Body: " + JSON.stringify(body.findIndex(isTable1)).toString());
+}
 
 // io.on('connection',(socket) => {
 //     console.log('A user connected ' + socket.id);
@@ -24,18 +69,32 @@ app.get("/SocketIOChat", (req, res) => {
 });
 
 
+app.get("/FrontEndTesting-Home", (req, res) => {
+    //res.sendFile(path.join(__dirname, '../../client/testerHTML.html'));
+    res.sendFile(path.join(__dirname, '../../client/tableRequest.html'));
+});
+
+
 app.post("/TestBodyPassing", (request,response) => {
     let theBody = request.body;
-    console.log(theBody);
 
-    tableList.push(theBody);
+    console.log("Body Request: " + JSON.stringify(theBody).toString());
+    queueInsertingFunction(request.body);
 
+    //tableList.push(theBody);
+
+    printQueue();
     response.send("SEENT!");
 });
 
+
+
+
+
+
 app.post("/CurrentQueue", (request,response) => {
     let theBody = request.body;
-    console.log(theBody);
+    console.log(JSON.stringify(theBody).toString());
 
     tableList.push(theBody);
 
