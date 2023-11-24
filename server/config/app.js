@@ -84,7 +84,29 @@ app.post("/TestBodyPassing", (request,response) => {
     //tableList.push(theBody);
 
     printQueue();
-    response.send("SEENT!");
+
+    response.setHeader('Content-Type', 'application/json');
+    response.end(JSON.stringify({ "list": tableList}));
+
+
+    //response.send("<h1>SEENT!</h1>");
+});
+
+
+app.post("/TestBodyDeletion", (request,response) => {
+    let theBody = request.body;
+
+    //let workingList = JSON.parse(JSON.stringify(tableList));
+
+    let workingList = tableList;
+    
+    //workingList["list"].splice(parseInt(theBody["Deletion"]),1);
+    workingList.splice(parseInt(theBody["Deletion"]),1);
+    //workingList[]
+
+    //console.log("Body Request: " + JSON.stringify(theBody["Deletion"]).toString());
+    //console.log("New List: " + workingList["list"]);
+    console.log("New List: " + JSON.stringify(workingList));
 });
 
 
