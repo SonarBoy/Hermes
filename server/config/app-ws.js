@@ -29,8 +29,8 @@ let tableList = [];
 
 app.get("/SocketIOChat", (req, res) => {
     res.setHeader('X-Content-Type-Options','nosniff');
-    //res.sendFile(path.join(__dirname, '../../client/socketIOIndexWS.html'));
-    res.sendFile(path.join(__dirname, '../../client/testerHTML.html'));
+    res.sendFile(path.join(__dirname, '../../client/socketIOIndexWS.html'));
+    //res.sendFile(path.join(__dirname, '../../client/testerHTML.html'));
 });
 
 
@@ -141,5 +141,3 @@ app.get("/TableRequest-Get-Request", (request, response) => {
 
 
 module.exports = app;
-
-module.exports = (io) => { }

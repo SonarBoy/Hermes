@@ -64,7 +64,7 @@ let queueInsertingFunction = function(insertingData){
 
 // });
 
-app.get("/SocketIOChat", (req, res) => {
+app.get(" ", (req, res) => {
     res.sendFile(path.join(__dirname, '../../client/socketIOIndex.html'));
 });
 
@@ -86,7 +86,8 @@ app.post("/TestBodyPassing", (request,response) => {
     printQueue();
 
     response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify({ "list": tableList}));
+    
+    response.status(200).end(JSON.stringify({ "list": tableList}));
 
 
     //response.send("<h1>SEENT!</h1>");
@@ -98,7 +99,7 @@ app.post("/TestBodyDeletion", (request,response) => {
 
     //let workingList = JSON.parse(JSON.stringify(tableList));
 
-    let workingList = tableList;
+    let workingList = tableList.slice();
     
     //workingList["list"].splice(parseInt(theBody["Deletion"]),1);
     workingList.splice(parseInt(theBody["Deletion"]),1);
@@ -106,7 +107,15 @@ app.post("/TestBodyDeletion", (request,response) => {
 
     //console.log("Body Request: " + JSON.stringify(theBody["Deletion"]).toString());
     //console.log("New List: " + workingList["list"]);
+    console.log("Current List: " + JSON.stringify(tableList));
     console.log("New List: " + JSON.stringify(workingList));
+
+    tableList = workingList;
+
+    response.setHeader('Content-Type', 'application/json');
+    response.send(JSON.stringify({ "list": workingList}));
+
+    //response.status(200).end(JSON.stringify({ "list": workingList}));
 });
 
 

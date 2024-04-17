@@ -26,6 +26,7 @@
   <!-- Tutorial #3
   Notice that I’m not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.    
   -->
+  <!-- <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script> -->
   <script src="/socket.io/socket.io.js"></script>
     <script>
       
@@ -44,7 +45,7 @@
         e.preventDefault();
 
         if(input.value){
-            socket.emit('message', input.value);
+            socket.emit('chat message', input.value);
             input.value = '';
         }
     });
@@ -57,14 +58,14 @@
         const item = document.createElement('li');
         item.textContent = msg;
         messages.appendChild(item);
-        windows.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
     });
 
     socket.on('connection',(msg) => {
         const item = document.createElement('li');
         item.textContent = msg;
         messages.appendChild(item);
-        windows.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
     });
 
 

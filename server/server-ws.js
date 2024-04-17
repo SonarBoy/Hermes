@@ -2,6 +2,8 @@
 var app = require('../server/config/app-ws');
 var http = require('http');
 
+const { Server } = require('socket.io');
+
 
 var port = normalizePort(process.env.PORT || '3000');
 
@@ -14,6 +16,41 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+
+
+let io = new Server(server, {
+  connectionStateRecovery: {}
+});
+
+
+io.on('connection',(socket) => {
+  console.log('A user connected ' + socket.id);
+
+  /* 
+    Tutorial #5 Broadcasting to conected sockets.
+  */
+  socket.broadcast.emit('connection','Hello '+ socket.id);
+
+  socket.on('disconnect',() =>{
+    console.log('A user disconnected '+ socket.id);
+
+    // Tutrl #5
+    socket.broadcast.emit('Good Bye ' + socket.id);
+  });
+
+  /* 
+    Tutorial #4 Listening of sent events from the client.
+  */
+
+    socket.on('chat message', (msg) => {
+        console.log('Message: ' + msg);
+
+        // Tutrl #5
+        io.emit('chat message', socket.id + " said: " +msg);
+    });
+
+
+});
 
 /**
  * Normalize a port into a number, string, or false.
