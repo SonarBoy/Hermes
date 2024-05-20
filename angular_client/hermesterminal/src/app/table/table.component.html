@@ -1,0 +1,13 @@
+
+<div class="table" *ngFor="let table of tables">
+    <h3 (click)="onSelect(table)">{{table.tableNumber}} {{table.section}}</h3>
+    <div *ngFor="let request of table.request">
+        <p>{{request}}</p>
+    </div>
+    
+</div>
+
+<app-table-details [table]="selectedTable"></app-table-details>
+
+
+

@@ -27,7 +27,11 @@ server.on('listening', onListening);
 
 */
 let io = new Server(server, {
-  connectionStateRecovery: {}
+  connectionStateRecovery: {},
+  cors: {
+    origins: ['http://localhost:4200/'],
+    methods: ["GET", "POST"]
+}
 });
 
 

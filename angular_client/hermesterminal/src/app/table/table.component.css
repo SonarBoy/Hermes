@@ -1,0 +1,12 @@
+.table {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+    border: 5px solid blue;
+}
+
+.table h3 {
+    display: flex;
+    border: 2px solid green;
+  }
