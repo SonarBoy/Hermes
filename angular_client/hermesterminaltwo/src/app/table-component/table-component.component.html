@@ -1,4 +1,73 @@
 <h1>This is a test</h1>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+
+
+      <div class="input-group row">
+        <!-- <div class="column"> -->
+          <span class="input-group-text col-3" id="basic-addon1">Restraunt ID</span>
+        <!-- </div> -->
+        <!-- <div class="column"> -->
+        <input #input1 class="form-control col-6" id="text1" (change)="myFunction($event)"  [(ngModel)]="restrauntId" type="text"  placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <!-- </div> -->
+      </div>
+
+      <div class="input-group row">
+        
+        <span class="input-group-text col-3" id="basic-addon1">Section</span>
+    
+        <input #input2 class="form-control col-6" id="text2" type="text"   [(ngModel)]="sectionId" placeholder="Section" aria-label="Username" aria-describedby="basic-addon1">
+      
+      </div>
+
+      <div class="input-group row">
+
+        
+        <span class="input-group-text col-3" id="basic-addon1">Table</span>
+    
+        <input #input3 class="form-control col-6" id="text3" type="text" [(ngModel)]="tableId" placeholder="Table" aria-label="Username" aria-describedby="basic-addon1">
+      
+      </div>
+
+      <div class="input-group row">
+        <span class="input-group-text col-3" id="basic-addon1">Send Request</span>
+
+        <!-- <button class="btn btn-primary col-6" (click)="sendMessage()" >Connection Socket Button</button> -->
+        <button class="btn btn-primary col-6"  >Connection Socket Button</button>
+      </div>
+
+
+
+  </div>
+
+  <!-- <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+    </div>
+  </div> -->
+
+
+<a href="/Menu">Menu</a>
 
 <button (click)="testingClick()">Testing Socket Button</button>
-<button (click)="sendMessage()" class="btn btn-primary">Connection Socket Button</button>
+<!-- <button (click)="sendMessage()" class="btn btn-primary">Connection Socket Button</button> -->
+
+
