@@ -2,12 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableComponentComponent } from './table-component/table-component.component';
-
 import { AppComponent } from './app.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { MenuComponent } from './menu/menu.component';
-
+import { QueryDisplayComponent } from './query-display/query-display.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,9 +15,7 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    TableComponentComponent,
-    AboutUsComponent,
-    MenuComponent
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

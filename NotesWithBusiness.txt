@@ -1,0 +1,13 @@
+TODO:
+
+1) Create Console message for when the server starts up.
+2) Can you get more data on the type of user that connects please see socket server @ 62
+
+IO/HTTP Server
+http://localhost:3000/
+
+Waiter Url
+http://localhost:4200/
+
+Ordering URL
+http://localhost:54551/

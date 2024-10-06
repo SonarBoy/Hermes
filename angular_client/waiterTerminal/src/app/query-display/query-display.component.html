@@ -1,0 +1,31 @@
+
+<h1>Testing for adding a list of Items</h1>
+
+
+<!-- <ul class="tableQueryList">
+    <li *ngFor="let tableQuery of tableQueryList">
+
+    </li>
+</ul> -->
+
+
+<!-- <h1>{{tableQueryList}}</h1> -->
+
+<ul class="list-group" >
+    <li *ngFor="let table of tableQueryList.currentQueue">
+        
+        <!-- <div class="" role="alert">
+            {{table.restrauntId}}
+        </div> -->
+          
+        
+        <div class="list-group-item list-group-item-info d-flex flex-row">Section: {{table.sectionId}}  
+                <button (click)="sendMessage(table)" type="button" class="btn btn-primary align-self-center">Delete</button>
+        </div>
+
+
+        <div class="list-group-item list-group-item-action list-group-item-dark">Table Id: {{table.tableId}}</div>
+        
+        <br/>
+    </li>
+  </ul>
